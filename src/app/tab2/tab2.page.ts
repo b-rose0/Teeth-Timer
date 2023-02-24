@@ -82,7 +82,7 @@ export class Tab2Page implements OnInit{
   async doConfirm(values: any) {
     let confirm = await this.alerCtrl.create({
       header: 'Save settings',
-      message: 'Do you agree to use this lightsaber to do good across the intergalactic galaxy?',
+      message: 'Voulez vous sauvegarder ces paramètres ?',
       buttons: [
         {
           text: 'Disagree',
@@ -110,5 +110,15 @@ export class Tab2Page implements OnInit{
         values
       })
     });
+  }
+
+  incrementNumberZone() {
+    const currentValue = this.settingsForm.controls["numberTotalZ"].getRawValue();
+    this.settingsForm.controls["numberTotalZ"].setValue(parseInt(currentValue)+1);
+  }
+  decrementNumberZone() {
+    const currentValue = this.settingsForm.controls["numberTotalZ"].getRawValue();
+    this.settingsForm.controls["numberTotalZ"].setValue(parseInt(currentValue)-1);
+    
   }
 }

@@ -15,7 +15,15 @@
   <form [formGroup]="settingsForm" (ngSubmit)="doConfirm(settingsForm.value)">
     <ion-item>
       <ion-label position="stacked">Nombre total zones</ion-label>
-      <ion-input type="" formControlName="numberTotalZ" placeholder="15"></ion-input>
+      <ion-input type="" formControlName="numberTotalZ" placeholder="15">
+        <ion-button color="primary" class="buttonInput" (click)="incrementNumberZone()">
+          <ion-icon  name="add-outline"></ion-icon>
+        </ion-button>
+        <ion-button color="primary" class="buttonInput" (click)="decrementNumberZone()">
+          <ion-icon name="remove-outline"></ion-icon>
+        </ion-button>
+      </ion-input>
+
     </ion-item>
     <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.numberTotalZ">
