@@ -1,0 +1,21 @@
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+ion-grid{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .zones{
+        font-size: larger;
+        margin: 3em;
+    }
+
+    .timerGlobal{
+        font-size: large;
+    }
+}
+

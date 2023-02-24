@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Paramètres
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,67 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Paramètres</ion-title>
     </ion-toolbar>
   </ion-header>
+  <form [formGroup]="settingsForm" (ngSubmit)="doConfirm(settingsForm.value)">
+    <ion-item>
+      <ion-label position="stacked">Nombre total zones</ion-label>
+      <ion-input type="" formControlName="numberTotalZ" placeholder="15"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.numberTotalZ">
+        <div class="error-message" *ngIf="settingsForm.get('numberTotalZ')?.hasError(validation.type) && (settingsForm.get('numberTotalZ')?.dirty || settingsForm.get('numberTotalZ')?.touched)">
+          <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+    <ion-item>
+      <ion-label position="stacked">Quand changer de zone ?</ion-label>
+      <!-- <ion-input type="" formControlName="timeZ" placeholder="16"></ion-input> -->
+      <ion-range formControlName="timeZ" color="primary"  min="10" max="60" step="2" snaps="true" pin="true">
+        <ion-icon size="small" slot="start" name="hourglass-outline"></ion-icon>
+        <ion-icon slot="end" name="hourglass-outline"></ion-icon>
+      </ion-range>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.timeZ">
+        <div class="error-message" *ngIf="settingsForm.get('timeZ')?.hasError(validation.type) && (settingsForm.get('timeZ')?.dirty || settingsForm.get('timeZ')?.touched)">
+          <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label position="stacked">Temps d'attente entre zones</ion-label>
+      <!-- <ion-input type="" formControlName="waitBetweenZ" placeholder="6"></ion-input> -->
+      <ion-range formControlName="waitBetweenZ" color="primary"  min="0" max="30" step="1" snaps="true" pin="true">
+        <ion-icon size="small" slot="start" name="hourglass-outline"></ion-icon>
+        <ion-icon slot="end" name="hourglass-outline"></ion-icon>
+      </ion-range>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.waitBetweenZ">
+        <div class="error-message" *ngIf="settingsForm.get('waitBetweenZ')?.hasError(validation.type) && (settingsForm.get('waitBetweenZ')?.dirty || settingsForm.get('waitBetweenZ')?.touched)">
+          <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label position="stacked">Pour qui ?</ion-label>
+      <ion-input type="text" formControlName="timerTarget" placeholder="mon petit marco"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.timerTarget">
+        <div class="error-message" *ngIf="settingsForm.get('timerTarget')?.hasError(validation.type) && (settingsForm.get('timerTarget')?.dirty || settingsForm.get('timerTarget')?.touched)">
+          <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-button color="primary" class="submit-btn" type="submit" [disabled]="!settingsForm.valid">Save settings</ion-button>
+  </form>
+
 </ion-content>
